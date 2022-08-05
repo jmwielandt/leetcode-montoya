@@ -11,6 +11,7 @@ impl ListNode {
     }
 }
 
+/// Add helper methods for debugging and pretty printing
 impl ListNode {
     /// creates a linked list from a vector
     fn from_vec(mut vals: Vec<i32>) -> Self {
@@ -39,15 +40,11 @@ impl ListNode {
     }
 }
 
-// impl Clone for ListNode {
-//     fn clone(&self) -> Self {
-//         ListNode {
-//             val: self.val,
-//             next: None,
-//         }
-//     }
-// }
-
+/// required function: picks the min value from the head of two
+/// linked lists, removing it from the original and returns it, with
+/// the two linked lists.
+///
+/// Basically, the 'merge' part in the merge sort algorithm.
 fn pick_min_and_advance(
     list1: Option<Box<ListNode>>,
     list2: Option<Box<ListNode>>,
@@ -72,18 +69,17 @@ fn pick_min_and_advance(
 }
 
 fn main() {
+    // initialize some linked lists for testing
     let list1 = ListNode::from_vec(vec![4, 3, 5, 2, 6]);
     let list2 = ListNode::from_vec(vec![1, 8, 7]);
     println!("List 1 (original): {}", list1.str());
     println!("List 2 (original): {}", list2.str());
 
-    println!();
+    println!(); // helps output readability
     let (min, list1, list2) = pick_min_and_advance(Some(Box::new(list1)), Some(Box::new(list2)));
     println!("List 1 (result): {:?}", list1);
     println!("List 2 (result): {:?}", list2);
 
-    println!();
+    println!(); // helps output readability
     println!("Min chosen: {:?}", min);
-
-    // println!("Hello, world!");
 }
